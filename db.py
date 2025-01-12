@@ -1,0 +1,1 @@
+# gotta have a database to store our partnered stores and their locations/details

@@ -1,0 +1,1 @@
+# should add user authentication and a way to provide individualized coupons to both idenify users that make purchases, and provide personalized discounts.
