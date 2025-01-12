@@ -16,24 +16,26 @@ params = {
 }
 
 # Make the API request
-response = requests.get(DIRECTIONS_API_URL, params=params)
+def get_data():
+    response = requests.get(DIRECTIONS_API_URL, params=params)
 
-if response.status_code == 200:
-    data = response.json()
+    if response.status_code == 200:
+        data = response.json()
 
-    # Parse relevant information
-    if data["status"] == "OK":
-        route = data["routes"][0]["legs"][0]
-        print("Start Address:", route["start_address"])
-        print("End Address:", route["end_address"])
-        print("Duration (normal):", route["duration"]["text"])
-        print("Duration in traffic:", route["duration_in_traffic"]["text"])
+        # Parse relevant information
+        if data["status"] == "OK":
+            route = data["routes"][0]["legs"][0]
+            print("Start Address:", route["start_address"])
+            print("End Address:", route["end_address"])
+            print("Duration (normal):", route["duration"]["text"])
+            print("Duration in traffic:", route["duration_in_traffic"]["text"])
+        else:
+            print("Error:", data["status"])
     else:
-        print("Error:", data["status"])
-else:
-    print("Failed to connect to the API:", response.status_code)
+        print("Failed to connect to the API:", response.status_code)
 
-print(response)
+    return response
+print(get_data())
 
 # next: to use traffic data and extrapolate EV density. Might need to find some datasets to run some models for this. 
 # Connect with database to list partnered charging locations. 
